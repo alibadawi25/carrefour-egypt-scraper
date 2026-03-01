@@ -1,0 +1,16 @@
+{
+  "actorSpecification": 1,
+	"name": "carrefour-egypt-sitemap-scraper",
+	"title": "Carrefour Egypt Sitemap Product Scraper",
+	"description": "Extracts product URLs from Carrefour Egypt sitemap and scrapes page titles from all product pages. Handles sitemap indexes and filters for product-specific URLs.",
+	"version": "1.0",
+	"buildTag": "latest",
+	"meta": {
+		"templateId": "carrefour-sitemap-scraper",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile"
+}

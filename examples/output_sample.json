@@ -1,0 +1,57 @@
+{
+  "type": "carrefour_product_bilingual",
+  "sku": "MAFEGYPT00000004444447",
+  "brand": "Nestlé",
+  "price": "42.95",
+  "currency": "EGP",
+  "availability": "In Stock",
+  "size": "250 g",
+  "barcode": "7613036087940",
+  "images": {
+    "main": "https://cdn.mafrservices.com/sys-master-root/hb3/hb3/16866839871518/1427936_main.jpg",
+    "gallery": [
+      "https://cdn.mafrservices.com/sys-master-root/hb3/hb3/16866839871518/1427936_main.jpg",
+      "https://cdn.mafrservices.com/sys-master-root/h9b/h9e/16866840035358/1427936_shot1.jpg"
+    ]
+  },
+  "nutrition_facts": {
+    "nutriscore_grade": "c",
+    "serving_size": "30 g",
+    "per_100g": {
+      "energy_kcal": 450,
+      "fat": 20.5,
+      "saturated_fat": 4.5,
+      "carbohydrates": 60.2,
+      "sugars": 8.1,
+      "fiber": 3.5,
+      "proteins": 8.1,
+      "salt": 0.85,
+      "sodium": 0.34
+    },
+    "per_serving": {
+      "energy_kcal": 135,
+      "fat": 6.15,
+      "saturated_fat": 1.35,
+      "carbohydrates": 18.06,
+      "sugars": 2.43,
+      "fiber": 1.05,
+      "proteins": 2.43,
+      "salt": 0.255,
+      "sodium": 0.102
+    }
+  },
+  "arabic": {
+    "name": "نستله كورن فليكس حبوب الفطور بالحبوب الكاملة 250 جم",
+    "category": "حبوب الإفطار",
+    "description": "كورن فليكس من نستله هي رقائق الذرة الأصلية محمصة محمصة إلى حد الكمال. يتم تصنيعها من حبوب حقيقية وهي مصدر جيد للفيتامينات والمعادن.",
+    "url": "https://www.carrefouregypt.com/mafegypt/ar/c/MAFEGYPT00000004444447",
+    "page_title": "نستله كورن فليكس حبوب الفطور بالحبوب الكاملة 250 جم - كارفور مصر"
+  },
+  "english": {
+    "name": "Nestle Corn Flakes Whole Grain Breakfast Cereal 250g",
+    "category": "Breakfast Cereals",
+    "description": "Corn Flakes from Nestle are the original corn flakes toasted to perfection. They are made with real grains and are a good source of vitamins and minerals.",
+    "url": "https://www.carrefouregypt.com/mafegypt/en/c/MAFEGYPT00000004444447",
+    "page_title": "Nestle Corn Flakes Whole Grain Breakfast Cereal 250g - Carrefour Egypt"
+  }
+}

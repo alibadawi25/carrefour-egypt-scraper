@@ -1,0 +1,23 @@
+{
+    "title": "Carrefour Egypt Sitemap Product Scraper",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "sitemap_url": {
+            "title": "Sitemap URL",
+            "type": "string",
+            "description": "URL of the sitemap to parse for product links",
+            "default": "https://www.carrefouregypt.com/sitemap.xml",
+            "prefill": "https://www.carrefouregypt.com/sitemap.xml"
+        },
+        "max_pages_per_crawl": {
+            "title": "Max pages per crawl", 
+            "type": "integer",
+            "description": "Maximum number of product pages to crawl (0 = unlimited)",
+            "minimum": 0,
+            "maximum": 10000,
+            "default": 100,
+            "prefill": 100
+        }
+    },
+    "required": ["sitemap_url"]

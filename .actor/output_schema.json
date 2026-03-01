@@ -1,0 +1,9 @@
+{
+  "actorOutputSchemaVersion": 1,
+    "title": "Carrefour Egypt Product Scraper Output",
+      "type": "string",
+      "title": "Dataset Overview",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    }
+  }
+}

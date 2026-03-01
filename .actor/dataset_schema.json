@@ -1,0 +1,297 @@
+{
+  "title": "Carrefour Egypt Product Dataset - Bilingual",
+  "description": "Bilingual product data from Carrefour Egypt with structured Arabic and English information",
+  "type": "object",
+  "properties": {
+    "type": {
+      "title": "Record Type",
+      "type": "string",
+      "description": "Type identifier",
+      "example": "carrefour_product_bilingual"
+    },
+    "sku": {
+      "title": "SKU",
+      "type": "string",
+      "description": "Product SKU/ID number",
+      "example": "100616"
+    },
+    "brand": {
+      "title": "Brand",
+      "type": "string",
+      "description": "Product brand",
+      "example": "food_el_gawhara"
+    },
+    "price": {
+      "title": "Price",
+      "type": "string",
+      "description": "Product price",
+      "example": "12.05"
+    },
+    "currency": {
+      "title": "Currency",
+      "type": "string",
+      "description": "Price currency code",
+      "example": "EGP"
+    },
+    "availability": {
+      "title": "Availability",
+      "type": "string",
+      "description": "Stock availability status",
+      "example": "In Stock",
+      "enum": ["In Stock", "Out of Stock", "Unknown"]
+    },
+    "size": {
+      "title": "Size",
+      "type": "string",
+      "description": "Product size/quantity (e.g., 50 ml, 200 gm, 1.5 kg)",
+      "example": "50 ml"
+    },
+    "barcode": {
+      "title": "Barcode",
+      "type": "string",
+      "description": "Product barcode/EAN/GTIN (typically 13 digits)",
+      "example": "6223001380849"
+    },
+    "images": {
+      "title": "Product Images",
+      "type": "object",
+      "description": "Product image URLs",
+      "properties": {
+        "main": {
+          "title": "Main Image",
+          "type": "string",
+          "description": "Primary product image URL",
+          "example": "https://cdn.mafrservices.com/sys-master-root/h68/h36/31511177068574/100616_main.jpg"
+        },
+        "gallery": {
+          "title": "Image Gallery",
+          "type": "array",
+          "description": "Additional product images",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "nutrition_facts": {
+      "title": "Nutrition Facts",
+      "type": "object",
+      "description": "Nutritional information from Open Food Facts API",
+      "properties": {
+        "serving_size": {
+          "title": "Serving Size",
+          "type": "string",
+          "description": "Serving size description (e.g., '21 g', '250 ml')",
+          "example": "21 g"
+        },
+        "serving_quantity": {
+          "title": "Serving Quantity",
+          "type": "number",
+          "description": "Numeric serving size value",
+          "example": 21
+        },
+        "nutriscore_grade": {
+          "title": "Nutri-Score Grade",
+          "type": "string",
+          "description": "Nutri-Score grade (A-E, A being best)",
+          "example": "c"
+        },
+        "per_100g": {
+          "title": "Per 100g/100ml",
+          "type": "object",
+          "description": "Nutrition facts per 100 grams or 100 milliliters",
+          "properties": {
+            "energy_kcal": {
+              "title": "Energy (kcal)",
+              "type": "number",
+              "description": "Energy in kilocalories",
+              "example": 502
+            },
+            "fat": {
+              "title": "Fat",
+              "type": "number",
+              "description": "Total fat in grams",
+              "example": 25
+            },
+            "saturated_fat": {
+              "title": "Saturated Fat",
+              "type": "number",
+              "description": "Saturated fat in grams",
+              "example": 15
+            },
+            "carbohydrates": {
+              "title": "Carbohydrates",
+              "type": "number",
+              "description": "Total carbohydrates in grams",
+              "example": 64
+            },
+            "sugars": {
+              "title": "Sugars",
+              "type": "number",
+              "description": "Sugars in grams",
+              "example": 38
+            },
+            "fiber": {
+              "title": "Fiber",
+              "type": "number",
+              "description": "Dietary fiber in grams",
+              "example": 2.5
+            },
+            "proteins": {
+              "title": "Proteins",
+              "type": "number",
+              "description": "Proteins in grams",
+              "example": 6.5
+            },
+            "salt": {
+              "title": "Salt",
+              "type": "number",
+              "description": "Salt in grams",
+              "example": 0.77
+            },
+            "sodium": {
+              "title": "Sodium",
+              "type": "number",
+              "description": "Sodium in grams",
+              "example": 0.31
+            }
+          }
+        },
+        "per_serving": {
+          "title": "Per Serving",
+          "type": "object",
+          "description": "Nutrition facts per serving size",
+          "properties": {
+            "energy_kcal": {
+              "title": "Energy (kcal)",
+              "type": "number",
+              "description": "Energy in kilocalories per serving",
+              "example": 105
+            },
+            "fat": {
+              "title": "Fat",
+              "type": "number",
+              "description": "Total fat in grams per serving",
+              "example": 5.25
+            },
+            "saturated_fat": {
+              "title": "Saturated Fat",
+              "type": "number",
+              "description": "Saturated fat in grams per serving",
+              "example": 3.15
+            },
+            "carbohydrates": {
+              "title": "Carbohydrates",
+              "type": "number",
+              "description": "Total carbohydrates in grams per serving",
+              "example": 13.4
+            },
+            "sugars": {
+              "title": "Sugars",
+              "type": "number",
+              "description": "Sugars in grams per serving",
+              "example": 7.98
+            },
+            "fiber": {
+              "title": "Fiber",
+              "type": "number",
+              "description": "Dietary fiber in grams per serving",
+              "example": 0.5
+            },
+            "proteins": {
+              "title": "Proteins",
+              "type": "number",
+              "description": "Proteins in grams per serving",
+              "example": 1.4
+            },
+            "salt": {
+              "title": "Salt",
+              "type": "number",
+              "description": "Salt in grams per serving",
+              "example": 0.161
+            },
+            "sodium": {
+              "title": "Sodium",
+              "type": "number",
+              "description": "Sodium in grams per serving",
+              "example": 0.0645
+            }
+          }
+        }
+      }
+    },
+    "arabic": {
+      "title": "Arabic Version",
+      "type": "object",
+      "description": "Product information in Arabic",
+      "properties": {
+        "url": {
+          "title": "URL",
+          "type": "string",
+          "description": "Arabic product page URL",
+          "example": "https://www.carrefouregypt.com/mafegy/ar/loose-tea/el-gawhara-loose-tea-40g/p/100616"
+        },
+        "name": {
+          "title": "Product Name",
+          "type": "string",
+          "description": "Product name in Arabic",
+          "example": "الجوهرة شاي اسود - 40 جم"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "description": "Product category in Arabic",
+          "example": "المشروبات"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "description": "Product description in Arabic"
+        },
+        "page_title": {
+          "title": "Page Title",
+          "type": "string",
+          "description": "Full page title in Arabic",
+          "example": "تسوق الجوهرة شاي اسود - 40 جم أون لاين - كارفور القاهرة، الجيزة، الاسكندرية،"
+        }
+      }
+    },
+    "english": {
+      "title": "English Version",
+      "type": "object",
+      "description": "Product information in English",
+      "properties": {
+        "url": {
+          "title": "URL",
+          "type": "string",
+          "description": "English product page URL",
+          "example": "https://www.carrefouregypt.com/mafegy/en/loose-tea/el-gawhara-loose-tea-40g/p/100616"
+        },
+        "name": {
+          "title": "Product Name",
+          "type": "string",
+          "description": "Product name in English",
+          "example": "El Gawhara Black Tea - 40 gm"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "description": "Product category in English",
+          "example": "Beverages"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "description": "Product description in English"
+        },
+        "page_title": {
+          "title": "Page Title",
+          "type": "string",
+          "description": "Full page title in English",
+          "example": "Buy El Gawhara Black Tea - 40 gm Online | Carrefour Egypt"
+        }
+      }
+    }
+  },
+  "required": ["type", "sku"]
+}

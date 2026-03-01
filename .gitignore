@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Apify Storage
+storage/datasets/default/*.json
+storage/key_value_stores/
+storage/request_queues/
+!storage/datasets/default/__metadata__.json
+
+# Playwright
+.playwright/
+
+# Logs
+*.log
+.apify/
+
+# Excel files (exclude generated outputs)
+*.xlsx
+~$*.xlsx
+
+# Environment variables
+.env
+.env.local
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution
+*.tar.gz
+*.whl
+
+# Setup/Development Guides (not needed in repo)
+GITHUB_PUSH_CHECKLIST.md
+RENAME_GUIDE.md
+REFACTORING_SUMMARY.md
+
+# Backup files
+*.backup
+*_old.py
+main_old.py
