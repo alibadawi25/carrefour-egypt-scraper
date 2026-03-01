@@ -62,13 +62,22 @@ pip install -r requirements.txt
 playwright install chromium
 
 # Run the scraper
-apify run
+python -m src
 ```
 
-Or with custom input:
+Or with custom input (edit `storage/key_value_stores/default/INPUT.json` first):
 
 ```bash
-# Edit storage/key_value_stores/default/INPUT.json, then:
+python -m src
+```
+
+### Run with Apify CLI (Optional)
+
+```bash
+# Install Apify CLI
+npm install -g apify-cli
+
+# Run with Apify
 apify run
 ```
 
