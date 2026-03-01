@@ -8,6 +8,19 @@
 
 ---
 
+## ⚠️ Legal Disclaimer
+
+**This project is intended for non-commercial use only.**
+
+- ✅ Respects Carrefour Egypt's `robots.txt` directives
+- ✅ Only accesses publicly available product pages and sitemaps
+- ⚠️ Users are responsible for compliance with Carrefour Egypt's Terms of Service
+- ⚠️ Do not use scraped data for commercial purposes without permission
+
+**Use at your own risk. No warranty provided.**
+
+---
+
 ## ✨ Key Features
 
 - 🌐 **Bilingual Support** - Crawls both Arabic and English product pages, intelligently merges by SKU
