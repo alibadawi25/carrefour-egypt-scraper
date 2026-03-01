@@ -31,7 +31,7 @@
 
 | Metric               | Value                                                 |
 | -------------------- | ----------------------------------------------------- |
-| Processing Speed     | ~45 seconds for 100 products                          |
+| Processing Speed     | ~1.7 seconds per product (tested on 40 products)      |
 | Network Optimization | 70% traffic reduction (blocks images/CSS)             |
 | Cache Efficiency     | 80% reduction in redundant API calls                  |
 | Success Rate         | 99% data extraction accuracy                          |
