@@ -6,8 +6,6 @@
 [![Apify](https://img.shields.io/badge/Apify-Actor-00D4AA)](https://apify.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-![Scraper Demo](https://via.placeholder.com/800x400/1a1a1a/00D4AA?text=Carrefour+Egypt+Scraper)
-
 ---
 
 ## ✨ Key Features
