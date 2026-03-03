@@ -8,7 +8,7 @@ this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="carrefour-egypt-scraper",
+    name="carrefour-scraper",
     version="1.0.0",
     author="Ali Badawi",
     author_email="alibadawi25@gmail.com",

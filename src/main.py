@@ -696,7 +696,7 @@ async def extract_from_json_ld(page: Any, product_data: dict) -> bool:
 
 
 async def extract_barcode(page: Any, product_data: dict) -> None:
-    """Extract barcode from page content (Phase 3).
+    """Extract barcode from additionalAttributes section matching the product SKU (Phase 3).
     
     Args:
         page: Playwright page object
@@ -707,9 +707,48 @@ async def extract_barcode(page: Any, product_data: dict) -> None:
     
     try:
         content = await page.content()
-        barcode_match = re.search(r'barcode\\":\\"(\d+)', content)
-        if barcode_match:
-            product_data['barcode'] = barcode_match.group(1)
+        sku = product_data.get('sku', '')
+        
+        if not sku:
+            Actor.log.debug('No SKU available for barcode extraction')
+            return
+        
+        # Find ALL additionalAttributes sections and look for the one matching our SKU
+        search_pos = 0
+        found = False
+        
+        while True:
+            attr_start = content.find('additionalAttributes', search_pos)
+            if attr_start == -1:
+                break
+            
+            # Extract chunk after this additionalAttributes (5KB should be enough)
+            chunk_end = min(attr_start + 5000, len(content))
+            attr_chunk = content[attr_start:chunk_end]
+            
+            # Check if this section has our productId/SKU
+            sku_pattern = f'productId\\":\\"{sku}\\"'
+            if sku_pattern in attr_chunk:
+                # This is our product's additionalAttributes section
+                # Now extract barcode from within this section
+                barcode_match = re.search(r'\\"barcode\\":\\"(\d{8,14})\\"', attr_chunk)
+                if barcode_match:
+                    product_data['barcode'] = barcode_match.group(1)
+                    Actor.log.info(f'✓ Extracted barcode {barcode_match.group(1)} from additionalAttributes matching SKU {sku}')
+                    found = True
+                    break
+                else:
+                    Actor.log.debug(f'Found additionalAttributes for SKU {sku} but no barcode in it')
+            
+            # Move to next occurrence
+            search_pos = attr_start + 1
+        
+        if not found:
+            # Fallback: try simple pattern in full content
+            barcode_match = re.search(r'barcode\\":\\"(\d{8,14})\\"', content)
+            if barcode_match:
+                product_data['barcode'] = barcode_match.group(1)
+                Actor.log.debug(f'Extracted barcode from fallback pattern: {barcode_match.group(1)}')
     except Exception as e:
         Actor.log.debug(f'Failed to extract barcode: {e}')
 

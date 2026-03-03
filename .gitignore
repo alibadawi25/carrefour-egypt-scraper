@@ -48,9 +48,11 @@ storage/request_queues/
 *.log
 .apify/
 
-# Excel files (exclude generated outputs)
+# Output files (do not commit scraped data)
 *.xlsx
-~$*.xlsx
+*.csv
+*.pdf
+carrefour_products.*
 
 # Environment variables
 .env
@@ -74,3 +76,9 @@ REFACTORING_SUMMARY.md
 *.backup
 *_old.py
 main_old.py
+
+# Temporary/Debug files
+test_*.py
+analyze_*.py
+debug_*.html
+product_page_*.html

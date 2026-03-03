@@ -72,4 +72,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-**Note**: This changelog documents major changes. For detailed commit history, see [GitHub commits](https://github.com/alibadawi25/carrefour-egypt-scraper/commits).
+**Note**: This changelog documents major changes. For detailed commit history, see [GitHub commits](https://github.com/alibadawi25/carrefour-scraper/commits).

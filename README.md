@@ -1,6 +1,6 @@
-# 🛒 Carrefour Egypt Bilingual Product Scraper
+# 🛒 Carrefour Bilingual Product Scraper
 
-> **Intelligent web scraper** that extracts and merges Arabic/English product data from Carrefour Egypt's e-commerce platform, enriched with nutrition facts from Open Food Facts API.
+> **Intelligent web scraper** that extracts and merges Arabic/English product data from Carrefour's e-commerce platform across all regions (Saudi Arabia, Egypt, UAE, etc.), enriched with nutrition facts from Open Food Facts API.
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Apify](https://img.shields.io/badge/Apify-Actor-00D4AA)](https://apify.com)
@@ -12,9 +12,9 @@
 
 **This project is intended for non-commercial use only.**
 
-- ✅ Respects Carrefour Egypt's `robots.txt` directives
+- ✅ Respects Carrefour's `robots.txt` directives
 - ✅ Only accesses publicly available product pages and sitemaps
-- ⚠️ Users are responsible for compliance with Carrefour Egypt's Terms of Service
+- ⚠️ Users are responsible for compliance with Carrefour's Terms of Service
 - ⚠️ Do not use scraped data for commercial purposes without permission
 
 **Use at your own risk. No warranty provided.**
@@ -23,7 +23,8 @@
 
 ## ✨ Key Features
 
-- 🌐 **Bilingual Support** - Crawls both Arabic and English product pages, intelligently merges by SKU
+- � **Multi-Region Support** - Works with Carrefour sites across Saudi Arabia, Egypt, UAE, and other regions
+- �🌐 **Bilingual Support** - Crawls both Arabic and English product pages, intelligently merges by SKU
 - ⚡ **High Performance** - Parallel processing, LRU caching, and resource blocking achieve 50%+ speed improvement
 - 🥗 **Nutrition Enrichment** - Integrates Open Food Facts API for comprehensive nutrition data (50,000+ products)
 - 🎯 **Smart Extraction** - Multi-phase fallback strategy (embedded JSON → JSON-LD → DOM → button clicks) ensures 99% success rate
@@ -44,7 +45,7 @@
 
 | Metric               | Value                                                 |
 | -------------------- | ----------------------------------------------------- |
-| Processing Speed     | ~1.7 seconds per product (tested on 40 products)      |
+| Processing Speed     | ~0.9 seconds per product (optimized)                  |
 | Network Optimization | 70% traffic reduction (blocks images/CSS)             |
 | Cache Efficiency     | 80% reduction in redundant API calls                  |
 | Success Rate         | 99% data extraction accuracy                          |
@@ -61,8 +62,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/alibadawi25/carrefour-egypt-scraper.git
-cd carrefour-egypt-scraper
+git clone https://github.com/alibadawi25/carrefour-scraper.git
+cd carrefour-scraper
 
 # Create virtual environment
 python -m venv .venv
@@ -74,11 +75,53 @@ pip install -r requirements.txt
 # Install Playwright browsers
 playwright install chromium
 
-# Run the scraper
+# Run the scraper with default settings (10 products from Carrefour KSA)
 python -m src
 ```
 
-Or with custom input (edit `storage/key_value_stores/default/INPUT.json` first):
+### Configuring Input for Local Runs
+
+To customize scraping parameters, edit `storage/key_value_stores/default/INPUT.json`:
+
+```bash
+# Create the input file (if it doesn't exist)
+mkdir -p storage/key_value_stores/default  # Linux/Mac
+# OR
+md storage\key_value_stores\default  # Windows
+
+# Edit INPUT.json with your preferred editor
+nano storage/key_value_stores/default/INPUT.json
+# OR
+code storage/key_value_stores/default/INPUT.json
+```
+
+**Example `INPUT.json` configurations:**
+
+```json
+// Scrape 50 products from Carrefour Saudi Arabia
+{
+  "sitemap_url": "https://www.carrefourksa.com/sitemap.xml",
+  "max_pages_per_crawl": 50
+}
+```
+
+```json
+// Scrape 200 products from Carrefour Egypt
+{
+  "sitemap_url": "https://www.carrefouregypt.com/sitemap.xml",
+  "max_pages_per_crawl": 200
+}
+```
+
+```json
+// Scrape ALL products (unlimited, be careful!)
+{
+  "sitemap_url": "https://www.carrefourksa.com/sitemap.xml",
+  "max_pages_per_crawl": 0
+}
+```
+
+Then run the scraper:
 
 ```bash
 python -m src
@@ -107,23 +150,20 @@ apify push
 # Visit https://console.apify.com/actors
 ```
 
-## 📥 Input Configuration
-
-The scraper accepts the following input parameters:
-
-```json
-{
-  "sitemap_url": "https://www.carrefouregypt.com/sitemap.xml",
-  "max_pages_per_crawl": 100
-}
-```
+## 📥 Input Configuration Reference
 
 ### Input Parameters
 
-| Parameter             | Type    | Required | Default                                      | Description                                          |
-| --------------------- | ------- | -------- | -------------------------------------------- | ---------------------------------------------------- |
-| `sitemap_url`         | String  | No       | `https://www.carrefouregypt.com/sitemap.xml` | URL of the Carrefour Egypt sitemap                   |
-| `max_pages_per_crawl` | Integer | No       | `100`                                        | Maximum number of products to scrape (0 = unlimited) |
+| Parameter             | Type    | Required | Default                                    | Description                                                       |
+| --------------------- | ------- | -------- | ------------------------------------------ | ----------------------------------------------------------------- |
+| `sitemap_url`         | String  | No       | `https://www.carrefourksa.com/sitemap.xml` | URL of the Carrefour sitemap (supports KSA, Egypt, UAE, etc.)     |
+| `max_pages_per_crawl` | Integer | No       | `10`                                       | Maximum number of products to scrape per run (set 0 for unlimited) |
+
+**Supported Carrefour Regions:**
+- 🇸🇦 Saudi Arabia: `https://www.carrefourksa.com/sitemap.xml`
+- 🇪🇬 Egypt: `https://www.carrefouregypt.com/sitemap.xml`
+- 🇦🇪 UAE: `https://www.carrefouruae.com/sitemap.xml`
+- And more regional Carrefour sites with similar structure
 
 ## 📤 Output Data Format
 
@@ -132,38 +172,53 @@ Each scraped product produces a bilingual record with the following structure:
 ```json
 {
   "type": "carrefour_product_bilingual",
-  "sku": "MAFEGYPT00000123456789",
-  "brand": "Nestlé",
-  "price": "45.50",
-  "currency": "EGP",
+  "sku": "542446",
+  "brand": "food_twix",
+  "price": "1.75",
+  "currency": "SAR",
   "availability": "In Stock",
-  "size": "250g",
-  "barcode": "6281006123456",
+  "size": "21g",
+  "barcode": "5900951312083",
   "images": {
     "main": "https://...",
     "gallery": ["https://...", "https://..."]
   },
   "nutrition_facts": {
-    "nutriscore_grade": "c",
-    "serving_size": "30g",
+    "nutriscore_grade": "unknown",
+    "serving_size": "21 g",
+    "serving_quantity": 21,
     "per_100g": {
-      "energy_kcal": 450,
-      "fat": 20.5,
-      "carbohydrates": 60.2,
-      "proteins": 8.1
+      "energy_kcal": 502,
+      "fat": 25,
+      "saturated_fat": 15,
+      "carbohydrates": 64,
+      "sugars": 38,
+      "proteins": 0,
+      "salt": 0.7675,
+      "sodium": 0.307
+    },
+    "per_serving": {
+      "energy_kcal": 105,
+      "fat": 5.25,
+      "saturated_fat": 3.15,
+      "carbohydrates": 13.4,
+      "sugars": 7.98,
+      "proteins": 0,
+      "salt": 0.161,
+      "sodium": 0.0645
     }
   },
   "arabic": {
-    "name": "نسله كورن فليكس",
-    "category": "حبوب الإفطار",
-    "description": "...",
-    "url": "https://www.carrefouregypt.com/mafegypt/ar/..."
+    "name": "تويكس توب بسكويت بالشوكولاته 21 جرام",
+    "category": "السوبر ماركت",
+    "description": "Top Chocolate Bar 21g",
+    "url": "https://www.carrefourksa.com/mafsau/ar/snacking-chocolates/twix-biscuit-twix-top-21g/p/542446"
   },
   "english": {
-    "name": "Nestlé Corn Flakes",
-    "category": "Breakfast Cereals",
-    "description": "...",
-    "url": "https://www.carrefouregypt.com/mafegypt/en/..."
+    "name": "Twix Top Chocolate Bar 21g",
+    "category": "Food Cupboard",
+    "description": "Top Chocolate Bar 21g",
+    "url": "https://www.carrefourksa.com/mafsau/en/snacking-chocolates/twix-biscuit-twix-top-21g/p/542446"
   }
 }
 ```
@@ -184,7 +239,7 @@ The Excel file contains flattened bilingual product data with separate columns f
 ## 🏗️ Project Structure
 
 ```text
-carrefour-egypt-scraper/
+carrefour-scraper/
 ├── src/
 │   ├── __init__.py            # Package initialization
 │   ├── __main__.py           # Entry point
@@ -247,8 +302,8 @@ Phase 5: Gallery Image Extraction
 - **E-commerce Data Analysis** - Price monitoring, competitor analysis
 - **Product Catalog Management** - Multi-language product databases
 - **Nutrition Research** - Food product nutrition comparison
-- **Market Research** - Brand and category analysis in Egyptian market
-- **Inventory Tracking** - Availability monitoring across languages
+- **Market Research** - Brand and category analysis across Middle East markets
+- **Inventory Tracking** - Availability monitoring across languages and regions
 
 ## 🛡️ Error Handling & Resilience
 
@@ -298,7 +353,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 ## 🙏 Acknowledgments
 
-- Carrefour Egypt for providing structured sitemap data
+- Carrefour for providing structured sitemap data across their regional platforms
 - Open Food Facts community for nutrition API
 - Apify team for excellent documentation and support
 
